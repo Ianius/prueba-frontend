@@ -10,4 +10,4 @@ export interface User {
     password: string;
     birthDate: string;
     city: string;
-};
+}

@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-auth',
@@ -58,17 +57,17 @@ export class AuthComponent {
                             this.showToast("error", "Error", "Nombre de usuario o contraseña incorrecta");
                         }
                     },
-                    error: _ => {
+                    error: () => {
                         this.showToast("error", "Error", "Algo salio mal. Por favor, intentelo de nuevo");
                     }
                 });
         } else {
             this.authService.signUp(this.username, this.password)
                 .subscribe({
-                    next: _ => {
+                    next: () => {
                         this.router.navigate(['/users']);
                     },
-                    error: _ => {
+                    error: () => {
                         this.showToast("error", "Error", "Algo salio mal. Por favor, intentelo de nuevo");
                     }
                 })
