@@ -1,0 +1,87 @@
+<div
+    class="flex flex-col p-8 gap-4 items-center justify-center h-full"
+>
+    <p-progressSpinner
+        *ngIf="loading"
+    />
+
+    <div
+        *ngIf="user && !loading"
+    >
+        <div
+            class='flex flex-col sm:flex-row gap-8 p-8 bg-[--surface-card] rounded-lg'
+        >
+            <div
+                class='flex flex-col gap-4 justify-between items-center'
+            >
+                <img
+                    class="max-w-[200px] p-4 bg-[--surface-section] rounded-full"
+                    src="https://robohash.org/impeditautest.png"
+                />
+
+                <div class="p-fluid self-stretch">
+                    <a href='/users'>
+                        <p-button label="Regresar" styleClass="p-button-outlined p-button-sm"></p-button>
+                    </a>
+                </div>
+            </div>
+
+            <div
+                class='flex flex-col gap-0'
+            >
+                <h1
+                    class='text-2xl font-bold'
+                >
+                    {{ user.firstName }} {{ user.lastName }}
+                </h1>
+
+                <p
+                    class='text-[--text-secondary-color]'
+                >
+                    {{ user.city }}
+                </p>
+
+                <div
+                    class='bg-[--primary-color] h-[2px] w-full rounded-full my-4'
+                ></div>
+
+                <div
+                    class='grid grid-cols-2'
+                >
+                    <ng-container
+                        *ngFor="let item of user | keyvalue:usersService.keepOriginalOrder"
+                    >
+                        <ng-container
+                            *ngIf="excludeKeys(item.key, 'firstName', 'lastName', 'id', 'city')"
+                        >
+                            <div
+                                class='[&:nth-child(4n+1)]:bg-[--surface-border] p-2 rounded-l-md truncate'
+                            >
+                                {{ convertKeyToCorrectFormat(item.key) }}
+                            </div>
+
+                            <div
+                                class='[&:nth-child(4n+2)]:bg-[--surface-border] p-2 rounded-r-md truncate'
+                            >
+                                {{ item.value }}
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class='flex flex-col gap-8 p-8 bg-[--surface-card] rounded-lg'
+        *ngIf="!user && !loading"
+    >
+        <h1>El usuario no existe</h1>
+
+        <div class="p-fluid self-stretch">
+            <a href='/users'>
+                <p-button label="Regresar" styleClass="p-button-outlined p-button-sm"></p-button>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@use "tailwindcss/base";
+@use "tailwindcss/components";
+@use "tailwindcss/utilities";
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+html, body {
+    height: 100%;
+    font-family: var(--font-family);
+    background-color: var(--surface-ground);
+}
+
+h1, h2, h3, h4, h4, h6 {
+    font-family: 'Raleway', sans-serif;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
